@@ -550,6 +550,12 @@ CONTAINS
           eta = calculate_eta(part_x, part_ux, part_uy, &
               part_uz, gamma_rel)
 
+#ifdef MAXCHI_IO
+          IF (eta .GT. current%maxchi) THEN
+            current%maxchi = eta_temp
+          END IF 
+#endif
+
           current%optical_depth = &
               current%optical_depth - delta_optical_depth(eta, gamma_rel)
 #ifdef TRIDENT_PHOTONS
