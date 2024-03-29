@@ -647,6 +647,10 @@ CONTAINS
         CALL write_particle_variable(c_dump_part_opdepth_brem, code, &
             'Bremsstrahlung Depth', '', it_output_real)
 #endif
+#ifdef MAXCHI_IO
+        CALL write_particle_variable(c_dump_qed_el_chimax, code, &
+            'Maximum Chi', '', it_output_real)
+#endif
 #ifdef WORK_DONE_INTEGRATED
         CALL write_particle_variable(c_dump_part_work_x, code, &
             'Work_x_direction', 'J', it_output_real)

@@ -128,6 +128,9 @@ CONTAINS
 #ifdef TRIDENT_PHOTONS
     found = .TRUE.
 #endif
+#ifdef MAXCHI_IO
+    found = .TRUE.
+#endif
 #endif
 #ifdef BREMSSTRAHLUNG
     found = .TRUE.
@@ -230,6 +233,10 @@ CONTAINS
 #ifdef TRIDENT_PHOTONS
     defines = IOR(defines, c_def_trident_photons)
     WRITE(*,*) 'Pair production by Trident process -DTRIDENT_PHOTONS'
+#endif
+#ifdef MAXCHI_IO
+    defines = IOR(defines, c_def_maxchi_io)
+    WRITE(*,*) 'Maximum quantum nonlinearity parameter -DMAXCHI_IO'
 #endif
 #endif
 #ifdef BREMSSTRAHLUNG

@@ -96,6 +96,9 @@ MODULE shared_data
 #if !defined(PER_SPECIES_WEIGHT) || defined(PHOTONS)
     REAL(num) :: weight
 #endif
+#ifdef MAXCHI_IO
+    REAL(num) :: maxchi
+#endif
 #ifdef DELTAF_METHOD
     REAL(num) :: pvol
 #endif

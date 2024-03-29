@@ -315,6 +315,15 @@ CONTAINS
         END DO
 #endif
 
+#ifdef MAXCHI_IO
+      CASE (c_dump_qed_el_chimax)
+        DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
+          part_count = part_count + 1
+          array(part_count) = cur%maxchi
+          cur => cur%next
+        END DO
+#endif
+
 #if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
       CASE (c_dump_part_qed_energy)
         DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))

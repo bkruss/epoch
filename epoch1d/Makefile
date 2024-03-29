@@ -214,8 +214,11 @@ DEFINES := $(DEFINE)
 #DEFINES += $(D)PARTICLE_ID
 #DEFINES += $(D)PARTICLE_ID4
 
+# Include I/O for max chi 
+DEFINES += $(D)MAXCHI_IO
+
 # Include QED routines
-#DEFINES += $(D)PHOTONS
+DEFINES += $(D)PHOTONS
 
 # Use the Trident process for pair production
 #DEFINES += $(D)TRIDENT_PHOTONS

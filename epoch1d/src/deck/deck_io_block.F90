@@ -591,6 +591,11 @@ CONTAINS
       elementselected = c_dump_part_opdepth_brem
 #endif
 
+#ifdef MAXCHI_IO
+    ELSE IF (str_cmp(element, 'maxchi')) THEN
+      elementselected = c_dump_qed_el_chimax
+#endif
+
 #ifdef WORK_DONE_INTEGRATED
     ELSE IF (str_cmp(element, 'work_x')) THEN
       elementselected = c_dump_part_work_x

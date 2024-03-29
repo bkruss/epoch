@@ -73,6 +73,9 @@ CONTAINS
 #ifdef BREMSSTRAHLUNG
     nvar = nvar+1
 #endif
+#ifdef MAXCHI_IO
+    nvar = nvar+1
+#endif
 #ifdef PROBE_TIME
     nvar = nvar+1
 #endif
@@ -464,6 +467,10 @@ CONTAINS
     array(cpos) = a_particle%optical_depth_bremsstrahlung
     cpos = cpos+1
 #endif
+#ifdef MAXCHI_IO
+    array(cpos) = a_particle%maxchi
+    cpos = cpos+1
+#endif
 #ifdef PROBE_TIME
     array(cpos) = a_particle%probe_time
     cpos = cpos+1
@@ -543,6 +550,10 @@ CONTAINS
     a_particle%optical_depth_bremsstrahlung = array(cpos)
     cpos = cpos+1
 #endif
+#ifdef MAXCHI_IO
+    a_particle%maxchi = array(cpos)
+    cpos = cpos+1
+#endif
 #ifdef PROBE_TIME
     a_particle%probe_time = array(cpos)
     cpos = cpos+1
@@ -601,6 +612,9 @@ CONTAINS
 #ifdef BREMSSTRAHLUNG
     new_particle%optical_depth_bremsstrahlung = &
         LOG(1.0_num / (1.0_num - random()))
+#endif
+#ifdef MAXCHI_IO
+    new_particle%maxchi = 0.0_num
 #endif
 #ifdef PROBE_TIME
     new_particle%probe_time = 0.0_num

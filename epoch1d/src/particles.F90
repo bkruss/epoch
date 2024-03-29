@@ -21,6 +21,10 @@ MODULE particles
   USE prefetch
 #endif
 
+#ifdef MAXCHI_IO
+  USE photons
+#endif
+
   IMPLICIT NONE
 
 CONTAINS
@@ -64,6 +68,11 @@ CONTAINS
     REAL(num) :: d_init, d_final
     REAL(num) :: probe_energy, part_mc2
 #endif
+
+#ifdef MAXCHI_IO
+    REAL(num) :: eta_temp
+#endif
+
 
     ! Contains the floating point version of the cell number (never actually
     ! used)
@@ -402,6 +411,20 @@ CONTAINS
         ! into particle array
         current%part_pos = part_x + x_grid_min_local
         current%part_p   = part_mc * (/ part_ux, part_uy, part_uz /)
+
+#ifdef MAXCHI_IO
+        IF (species_list(ispecies)%species_type == c_species_id_electron &
+            .OR. species_list(ispecies)%species_type == c_species_id_positron) &
+            THEN
+          eta_temp = calculate_eta(part_x, part_ux, part_uy, &
+              part_uz, gamma_rel)
+          IF (eta_temp .GT. current%maxchi) THEN
+            current%maxchi = eta_temp
+          END IF
+        END IF    
+
+#endif
+
 
         ! Add particle to boundary candidate list
         IF (current%part_pos < bnd_x_min &
