@@ -552,7 +552,7 @@ CONTAINS
 
 #ifdef MAXCHI_IO
           IF (eta .GT. current%maxchi) THEN
-            current%maxchi = eta_temp
+            current%maxchi = eta
           END IF 
 #endif
 
