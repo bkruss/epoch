@@ -532,6 +532,11 @@ CONTAINS
     REAL(num) :: dir_x, dir_y, dir_z
     REAL(num) :: eta, chi_val, part_e, gamma_rel, norm
 
+#ifdef MAXCHI_IO
+    REAL(num) :: eta_e
+#endif
+
+
     DO ispecies = 1, n_species
 
       ! First consider electrons and positrons
@@ -551,8 +556,11 @@ CONTAINS
               part_uz, gamma_rel)
 
 #ifdef MAXCHI_IO
-          IF (eta .GT. current%maxchi) THEN
-            current%maxchi = eta
+          eta_e = calculate_eta_e(part_x, part_ux, part_uy, &
+              part_uz, gamma_rel)
+
+          IF (eta_e .GT. current%maxchi) THEN
+            current%maxchi = eta_e
           END IF 
 #endif
 
@@ -713,6 +721,32 @@ CONTAINS
 
   END FUNCTION calculate_eta
 
+
+  FUNCTION calculate_eta_e(part_x, part_ux, part_uy, part_uz, &
+      gamma_rel)
+
+    REAL(num) :: calculate_eta_e
+    REAL(num), INTENT(IN) :: part_x
+    REAL(num), INTENT(IN) :: part_ux, part_uy, part_uz, gamma_rel
+    REAL(num) :: e_at_part(3), b_at_part(3)
+    REAL(num) :: Flp(4)
+    REAL(num) :: E_crit
+
+    CALL field_at_particle(part_x, e_at_part, b_at_part)
+
+    E_crit = q0*h_bar/(m0*c**3)
+
+    Flp(1) = (part_ux*e_at_part(1) + part_uy*e_at_part(2) + part_uz*e_at_part(3))*m0
+
+    Flp(2) = -gamma_rel*m0*c*e_at_part(1)/c - b_at_part(3)*part_uy*m0*c +  b_at_part(2)*part_uz*m0*c
+
+    Flp(3) = -gamma_rel*m0*c*e_at_part(2)/c - b_at_part(3)*part_ux*m0*c +  b_at_part(1)*part_uz*m0*c
+
+    Flp(4) = -gamma_rel*m0*c*e_at_part(3)/c - b_at_part(2)*part_ux*m0*c +  b_at_part(1)*part_uy*m0*c
+
+    calculate_eta_e = E_crit * SQRT(Flp(1)**2 + Flp(2)**2 + Flp(3)**2 + Flp(4)**2)
+
+  END FUNCTION calculate_eta_e
 
 
   FUNCTION calculate_chi(part_x, dir_x, dir_y, dir_z, part_e)
