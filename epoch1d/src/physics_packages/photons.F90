@@ -740,7 +740,7 @@ CONTAINS
 
     Flp(2) = -gamma_rel*m0*c*e_at_part(1)/c - b_at_part(3)*part_uy*m0*c +  b_at_part(2)*part_uz*m0*c
 
-    Flp(3) = -gamma_rel*m0*c*e_at_part(2)/c - b_at_part(3)*part_ux*m0*c +  b_at_part(1)*part_uz*m0*c
+    Flp(3) = -gamma_rel*m0*c*e_at_part(2)/c + b_at_part(3)*part_ux*m0*c -  b_at_part(1)*part_uz*m0*c
 
     Flp(4) = -gamma_rel*m0*c*e_at_part(3)/c - b_at_part(2)*part_ux*m0*c +  b_at_part(1)*part_uy*m0*c
 
