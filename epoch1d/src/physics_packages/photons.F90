@@ -744,8 +744,7 @@ CONTAINS
 
     Flp(4) = -gamma_rel*m0*c*e_at_part(3)/c - b_at_part(2)*part_ux*m0*c +  b_at_part(1)*part_uy*m0*c
 
-    !calculate_eta_e = SQRT(Flp(1)**2 + Flp(2)**2 + Flp(3)**2 + Flp(4)**2)/(m0*E_crit)
-    calculate_eta_e = SQRT(e_at_part(2)**2)
+    calculate_eta_e = SQRT(Flp(1)**2 + Flp(2)**2 + Flp(3)**2 + Flp(4)**2)/(m0*E_crit)
 
   END FUNCTION calculate_eta_e
 
