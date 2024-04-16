@@ -903,6 +903,11 @@ CONTAINS
     REAL(num) :: rand_temp, photon_energy
     TYPE(particle), POINTER :: new_photon
 
+
+#ifdef MAXCHI_IO
+    REAL(num) :: part_ux, part_uy, part_uz, eta_e, gamma_rel
+#endif
+
     mag_p = MAX(SQRT(generating_electron%part_p(1)**2 &
         + generating_electron%part_p(2)**2 &
         + generating_electron%part_p(3)**2), c_tiny)
@@ -912,6 +917,19 @@ CONTAINS
     dir_z = generating_electron%part_p(3) / mag_p
 
     generating_gamma = SQRT(1.0_num + (mag_p / m0 / c)**2)
+
+
+#ifdef MAXCHI_IO
+
+    part_ux = generating_electron%part_p(1) / mc0
+    part_uy = generating_electron%part_p(2) / mc0
+    part_uz = generating_electron%part_p(3) / mc0
+    gamma_rel = SQRT(part_ux**2 + part_uy**2 + part_uz**2 + 1.0_num)
+    
+    eta_e = calculate_eta_e(part_x, part_ux, part_uy, &
+        part_uz, gamma_rel)
+          
+#endif
 
     ! Determine photon energy
 
@@ -943,6 +961,14 @@ CONTAINS
       new_photon%optical_depth = reset_optical_depth()
       new_photon%particle_energy = photon_energy
       new_photon%weight = generating_electron%weight
+
+#ifdef MAXCHI_IO
+
+      new_photon%maxchi = eta_e
+          
+#endif
+
+
 
       CALL add_particle_to_partlist(species_list(iphoton)%attached_list, &
           new_photon)
