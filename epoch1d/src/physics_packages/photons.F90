@@ -899,7 +899,7 @@ CONTAINS
     TYPE(particle), POINTER :: generating_electron
     INTEGER, INTENT(IN) :: iphoton
     REAL(num), INTENT(IN) :: eta
-    REAL(num) :: dir_x, dir_y, dir_z, mag_p, generating_gamma
+    REAL(num) :: dir_x, dir_y, dir_z, mag_p, generating_gamma, part_x
     REAL(num) :: rand_temp, photon_energy
     TYPE(particle), POINTER :: new_photon
 
@@ -921,6 +921,7 @@ CONTAINS
 
 #ifdef MAXCHI_IO
 
+    part_x = generating_electron%part_pos
     part_ux = generating_electron%part_p(1) / mc0
     part_uy = generating_electron%part_p(2) / mc0
     part_uz = generating_electron%part_p(3) / mc0
