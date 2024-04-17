@@ -921,7 +921,7 @@ CONTAINS
 
 #ifdef MAXCHI_IO
 
-    part_x = generating_electron%part_pos
+    part_x = generating_electron%part_pos - x_grid_min_local
     part_ux = generating_electron%part_p(1) / mc0
     part_uy = generating_electron%part_p(2) / mc0
     part_uz = generating_electron%part_p(3) / mc0
