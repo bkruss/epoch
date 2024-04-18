@@ -322,6 +322,18 @@ CONTAINS
           array(part_count) = cur%maxchi
           cur => cur%next
         END DO
+      CASE (c_dump_qed_ph_chigen)
+        DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
+          part_count = part_count + 1
+          array(part_count) = cur%chigen
+          cur => cur%next
+        END DO
+      CASE (c_dump_qed_ph_enegen)
+        DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
+          part_count = part_count + 1
+          array(part_count) = cur%enegen
+          cur => cur%next
+        END DO
 #endif
 
 #if defined(PHOTONS) || defined(BREMSSTRAHLUNG)

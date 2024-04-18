@@ -1050,6 +1050,13 @@ CONTAINS
     new_positron%optical_depth_tri = reset_optical_depth()
 #endif
 
+#ifdef MAXCHI_IO
+    new_electron%chigen = generating_photon%maxchi
+    new_electron%enegen = generating_photon%particle_energy
+    new_positron%chigen = generating_photon%maxchi
+    new_positron%enegen = generating_photon%particle_energy          
+#endif
+
     new_electron%weight = generating_photon%weight
     new_positron%weight = generating_photon%weight
 

@@ -98,6 +98,8 @@ MODULE shared_data
 #endif
 #ifdef MAXCHI_IO
     REAL(num) :: maxchi
+    REAL(num) :: chigen
+    REAL(num) :: enegen    
 #endif
 #ifdef DELTAF_METHOD
     REAL(num) :: pvol

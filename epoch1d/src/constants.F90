@@ -634,8 +634,10 @@ MODULE constants
   INTEGER, PARAMETER :: c_dump_part_opdepth_brem = 71
   INTEGER, PARAMETER :: c_dump_probe_time        = 72
   INTEGER, PARAMETER :: c_dump_cou_log           = 73
-  INTEGER, PARAMETER :: c_dump_qed_el_chimax     = 74  
-  INTEGER, PARAMETER :: num_vars_to_dump         = 74
+  INTEGER, PARAMETER :: c_dump_qed_el_chimax     = 74
+  INTEGER, PARAMETER :: c_dump_qed_ph_chigen     = 75   
+  INTEGER, PARAMETER :: c_dump_qed_ph_enegen     = 76   
+  INTEGER, PARAMETER :: num_vars_to_dump         = 76
 
   INTEGER, PARAMETER :: c_subset_random     = 1
   INTEGER, PARAMETER :: c_subset_gamma_min  = 2

@@ -650,6 +650,10 @@ CONTAINS
 #ifdef MAXCHI_IO
         CALL write_particle_variable(c_dump_qed_el_chimax, code, &
             'Maximum Chi', '', it_output_real)
+        CALL write_particle_variable(c_dump_qed_ph_chigen, code, &
+            'Generating Photon Chi', '', it_output_real)
+        CALL write_particle_variable(c_dump_qed_ph_enegen, code, &
+            'Generating Photon Energy', '', it_output_real)
 #endif
 #ifdef WORK_DONE_INTEGRATED
         CALL write_particle_variable(c_dump_part_work_x, code, &

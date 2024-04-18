@@ -594,6 +594,10 @@ CONTAINS
 #ifdef MAXCHI_IO
     ELSE IF (str_cmp(element, 'maxchi')) THEN
       elementselected = c_dump_qed_el_chimax
+    ELSE IF (str_cmp(element, 'chigen')) THEN
+      elementselected = c_dump_qed_ph_chigen
+    ELSE IF (str_cmp(element, 'enegen')) THEN
+      elementselected = c_dump_qed_ph_enegen
 #endif
 
 #ifdef WORK_DONE_INTEGRATED
